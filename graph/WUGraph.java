@@ -146,3 +146,36 @@ public class WUGraph {
   public int weight(Object u, Object v);
 
 }
+
+public class CourseGradebook {
+
+  private HashMap<String, HashMap<Integer, Double>> gradebook;
+
+  public CourseGradebook() {
+    gradebook = new HashMap<String, HashMap<Integer, Double>>();
+  }
+
+  public void setScore(String assignment, int studentID, double score) {
+    if (!gradebook.containsKey(assignment)) {
+      gradebook.put(assignment, new HashMap<Integer, Double>());
+    }
+    gradebook.get(assignment).put(studentID, score);
+  }
+
+  public double getScore(String assignment, int studentID) {
+    if (gradebook.containsKey(assignment) && gradebook.get(assignment).containsKey(studentID)) {
+      return gradebook.get(assignment).get(studentID);
+    } else {
+      return -1; // or throw an exception if score not found
+    }
+  }
+
+  public void printGradebook() {
+    for (String assignment : gradebook.keySet()) {
+      System.out.println("Assignment: " + assignment);
+      for (int studentID : gradebook.get(assignment).keySet()) {
+        System.out.println("  Student ID: " + studentID + " - Score: " + gradebook.get(assignment).get(studentID));
+      }
+    }
+  }
+}
