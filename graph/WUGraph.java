@@ -2,82 +2,144 @@
 
 package graph;
 
+import dict.HashTableChained;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  * The WUGraph class represents a weighted, undirected graph.  Self-edges are
  * permitted.
  */
 
 public class WUGraph {
+  private int vertexCount;
+  private int edgeCount;
+  private List<Vertex> vertices;
+  class Edge {
+    int weight;
+    Vertex toVertex;
+
+    public Edge(int weight, Vertex toVertex) {
+      this.weight = weight;
+      this.toVertex = toVertex;
+    }
+  }
+  class Vertex {
+    Object name;
+    HashTableChained adjacentEdges;
+
+
+    public Vertex(Object originalObject) {
+      this.name = originalObject;
+      this.adjacentEdges = new HashTableChained();
+    }
+  }
 
   /**
    * WUGraph() constructs a graph having no vertices or edges.
-   *
+   * <p>
    * Running time:  O(1).
    */
-  public WUGraph();
+  public WUGraph() {
+    this.vertexCount = 0;
+    this.edgeCount = 0;
+    this.vertices = new ArrayList<>();
+  }
 
   /**
    * vertexCount() returns the number of vertices in the graph.
-   *
+   * <p>
    * Running time:  O(1).
    */
-  public int vertexCount();
+  public int vertexCount() {
+    return vertexCount;
+  }
 
   /**
    * edgeCount() returns the total number of edges in the graph.
-   *
+   * <p>
    * Running time:  O(1).
    */
-  public int edgeCount();
+  public int edgeCount() {
+    return edgeCount;
+  }
 
   /**
    * getVertices() returns an array containing all the objects that serve
    * as vertices of the graph.  The array's length is exactly equal to the
    * number of vertices.  If the graph has no vertices, the array has length
    * zero.
-   *
+   * <p>
    * (NOTE:  Do not return any internal data structure you use to represent
    * vertices!  Return only the same objects that were provided by the
    * calling application in calls to addVertex().)
-   *
+   * <p>
    * Running time:  O(|V|).
    */
-  public Object[] getVertices();
+  public Object[] getVertices() {
+    List<Object> originalObjects = new ArrayList<>();
+    for (var vertex : vertices) {
+      originalObjects.add(vertex.name);
+    }
+    return new List[]{originalObjects};
+  }
 
   /**
    * addVertex() adds a vertex (with no incident edges) to the graph.
    * The vertex's "name" is the object provided as the parameter "vertex".
    * If this object is already a vertex of the graph, the graph is unchanged.
-   *
+   * <p>
    * Running time:  O(1).
    */
-  public void addVertex(Object vertex);
+  public void addVertex(Object vertex) {
+    Vertex constructedVertex = new Vertex(vertex);
+    this.vertices.add(constructedVertex);
+    this.vertexCount++;
+  }
 
   /**
    * removeVertex() removes a vertex from the graph.  All edges incident on the
    * deleted vertex are removed as well.  If the parameter "vertex" does not
    * represent a vertex of the graph, the graph is unchanged.
-   *
+   * <p>
    * Running time:  O(d), where d is the degree of "vertex".
    */
-  public void removeVertex(Object vertex);
+  public void removeVertex(Object vertex) {
+    for (var existingVertex : vertices) {
+      if (existingVertex == vertex) {
+        this.vertices.remove(vertex);
+      }
+    }
+  }
 
   /**
    * isVertex() returns true if the parameter "vertex" represents a vertex of
    * the graph.
-   *
+   * <p>
    * Running time:  O(1).
    */
-  public boolean isVertex(Object vertex);
+  public boolean isVertex(Object vertex) {
+    for (var existingVertex : vertices) {
+      if (existingVertex == vertex) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   /**
    * degree() returns the degree of a vertex.  Self-edges add only one to the
    * degree of a vertex.  If the parameter "vertex" doesn't represent a vertex
    * of the graph, zero is returned.
-   *
+   * <p>
    * Running time:  O(1).
    */
-  public int degree(Object vertex);
+  public int degree(Object vertex) {
+    return 0;
+  }
 
   /**
    * getNeighbors() returns a new Neighbors object referencing two arrays.  The
@@ -105,20 +167,24 @@ public class WUGraph {
    * The edge is assigned a weight of "weight".  If the graph already contains
    * edge (u, v), the weight is updated to reflect the new value.  Self-edges
    * (where u.equals(v)) are allowed.
-   *
+   * <p>
    * Running time:  O(1).
    */
-  public void addEdge(Object u, Object v, int weight);
+  public void addEdge(Object u, Object v, int weight) {
+
+  }
 
   /**
    * removeEdge() removes an edge (u, v) from the graph.  If either of the
    * parameters u and v does not represent a vertex of the graph, the graph
    * is unchanged.  If (u, v) is not an edge of the graph, the graph is
    * unchanged.
-   *
+   * <p>
    * Running time:  O(1).
    */
-  public void removeEdge(Object u, Object v);
+  public void removeEdge(Object u, Object v) {
+
+  }
 
   /**
    * isEdge() returns true if (u, v) is an edge of the graph.  Returns false
@@ -146,4 +212,3 @@ public class WUGraph {
   public int weight(Object u, Object v);
 
 }
-
