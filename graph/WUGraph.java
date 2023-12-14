@@ -18,25 +18,12 @@ public class WUGraph {
   private int vertexCount;
   private int edgeCount;
   private List<Vertex> vertices;
-  class Edge {
-    int weight;
-    Vertex toVertex;
-
-    public Edge(int weight, Vertex toVertex) {
-      this.weight = weight;
-      this.toVertex = toVertex;
-    }
-  }
-  class Vertex {
-    Object name;
-    HashTableChained adjacentEdges;
+  private List<Edge> edges;
+  private HashTableChained vertexToIndex;
+  private HashTableChained vertexToEdges;
+  private HashTableChained vertexPairs;
 
 
-    public Vertex(Object originalObject) {
-      this.name = originalObject;
-      this.adjacentEdges = new HashTableChained();
-    }
-  }
 
   /**
    * WUGraph() constructs a graph having no vertices or edges.
@@ -47,6 +34,7 @@ public class WUGraph {
     this.vertexCount = 0;
     this.edgeCount = 0;
     this.vertices = new ArrayList<>();
+    this.vertexToIndex = new HashTableChained();
   }
 
   /**
@@ -96,7 +84,11 @@ public class WUGraph {
    */
   public void addVertex(Object vertex) {
     Vertex constructedVertex = new Vertex(vertex);
+    if (this.vertexToIndex.find(vertex) != null) {
+      return;
+    }
     this.vertices.add(constructedVertex);
+    this.vertexToIndex.insert(vertex, vertices.size() - 1);
     this.vertexCount++;
   }
 
@@ -108,11 +100,14 @@ public class WUGraph {
    * Running time:  O(d), where d is the degree of "vertex".
    */
   public void removeVertex(Object vertex) {
-    for (var existingVertex : vertices) {
-      if (existingVertex == vertex) {
-        this.vertices.remove(vertex);
-      }
+    if (this.vertexToIndex.find(vertex) != null) {
+      return;
     }
+    int index = Integer.valueOf(this.vertexToIndex.find(vertex).value().toString());
+    this.vertices.remove(index);
+    this.vertexToIndex.remove(vertex);
+    this.vertexCount--;
+    //add edge handling
   }
 
   /**
@@ -122,12 +117,8 @@ public class WUGraph {
    * Running time:  O(1).
    */
   public boolean isVertex(Object vertex) {
-    for (var existingVertex : vertices) {
-      if (existingVertex == vertex) {
-        return true;
-      }
-    }
-    return false;
+    Vertex constructedVertex = new Vertex(vertex);
+    return (this.vertexToIndex.find(constructedVertex) != null);
   }
 
   /**
@@ -171,7 +162,26 @@ public class WUGraph {
    * Running time:  O(1).
    */
   public void addEdge(Object u, Object v, int weight) {
+    Vertex firstVertex = new Vertex(u);
+    Vertex secondVertex = new Vertex(v);
+    //convert objects into vertex
+    if (this.vertexToIndex.find(firstVertex) == null || this.vertexToIndex.find(secondVertex) == null) {
+      return;
+    }
 
+    int firstIndex = Integer.valueOf(this.vertexToIndex.find(firstVertex).value().toString());
+    int secondIndex = Integer.valueOf(this.vertexToIndex.find(secondVertex).value().toString());
+    //find index of each vertex
+    Vertex firstExistingVertex = this.vertices.get(firstIndex);
+    Vertex secondExistingVertex = this.vertices.get(secondIndex);
+    VertexPair newPair = new VertexPair(firstExistingVertex, secondExistingVertex);
+    this.vertexPairs.insert(newPair, weight);
+/*    List<Edge> firstEdges = (List<Edge>) this.vertexToEdges.find(firstExistingVertex).value();
+      for (var edge : firstEdges) {
+      if (edge == )
+    }*/
+
+    this.vertexPairs.insert()
   }
 
   /**
