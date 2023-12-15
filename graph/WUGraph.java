@@ -3,11 +3,10 @@
 package graph;
 
 import dict.HashTableChained;
+import list.DList;
+import list.DListNode;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * The WUGraph class represents a weighted, undirected graph.  Self-edges are
@@ -17,11 +16,11 @@ import java.util.Set;
 public class WUGraph {
   private int vertexCount;
   private int edgeCount;
-  private List<Vertex> vertices;
-  private List<Edge> edges;
-  private HashTableChained vertexToIndex;
-  private HashTableChained vertexToEdges;
-  private HashTableChained vertexPairs;
+  private HashTableChained vertexToDListVertex;
+  private DList constructedVertexList;
+  private HashTableChained edges;
+  private HashTableChained edgesToWeights;
+  private DList edgeList;
 
 
 
@@ -33,8 +32,18 @@ public class WUGraph {
   public WUGraph() {
     this.vertexCount = 0;
     this.edgeCount = 0;
-    this.vertices = new ArrayList<>();
-    this.vertexToIndex = new HashTableChained();
+    this.vertexToDListVertex = new HashTableChained();
+    this.constructedVertexList = new DList();
+    this.edges = new HashTableChained();
+    this.edgesToWeights = new HashTableChained();
+    this.edgeList = new DList();
+  }
+
+  private DListNode getVertexFromDList(Object vertex) {
+    var foundConstructedVertex = this.vertexToDListVertex.find(vertex);
+    // remove from doubly linked list
+    var dlistVertex = (DListNode) foundConstructedVertex.value();
+    return dlistVertex;
   }
 
   /**
@@ -43,7 +52,7 @@ public class WUGraph {
    * Running time:  O(1).
    */
   public int vertexCount() {
-    return vertexCount;
+    return this.constructedVertexList.length();
   }
 
   /**
@@ -68,11 +77,14 @@ public class WUGraph {
    * Running time:  O(|V|).
    */
   public Object[] getVertices() {
-    List<Object> originalObjects = new ArrayList<>();
-    for (var vertex : vertices) {
-      originalObjects.add(vertex.name);
+    var currNode = this.constructedVertexList.front();
+    var objects = new ArrayList<Object>();
+    while (currNode != null) {
+      objects.add(((Vertex) currNode.item).name);
+      currNode = this.constructedVertexList.next(currNode);
+
     }
-    return new List[]{originalObjects};
+    return objects.toArray();
   }
 
   /**
@@ -83,14 +95,15 @@ public class WUGraph {
    * Running time:  O(1).
    */
   public void addVertex(Object vertex) {
-    if (this.vertexToIndex.find(vertex) != null) {
+    // check for vertex exists
+    if (this.vertexToDListVertex.find(vertex) != null) {
       return;
     }
 
-    Vertex constructedVertex = new Vertex(vertex);
-    this.vertices.add(constructedVertex);
-    this.vertexToIndex.insert(vertex, vertices.size() - 1);
-    this.vertexCount++;
+    var constructedVertex = new Vertex(vertex);
+    this.constructedVertexList.insertBack(constructedVertex);
+    var dListVertex = this.constructedVertexList.back();
+    this.vertexToDListVertex.insert(vertex, dListVertex);
   }
 
   /**
@@ -101,13 +114,15 @@ public class WUGraph {
    * Running time:  O(d), where d is the degree of "vertex".
    */
   public void removeVertex(Object vertex) {
-    if (this.vertexToIndex.find(vertex) != null) {
+    if (this.vertexToDListVertex.find(vertex) == null) {
       return;
     }
-    int index = Integer.valueOf(this.vertexToIndex.find(vertex).value().toString());
-    this.vertices.remove(index);
-    this.vertexToIndex.remove(vertex);
-    this.vertexCount--;
+
+    var dListVertex = getVertexFromDList(vertex);
+    // remove from doubly linked list
+    this.constructedVertexList.remove(dListVertex);
+    this.vertexToDListVertex.remove(vertex);
+
     //add edge handling
   }
 
@@ -118,7 +133,7 @@ public class WUGraph {
    * Running time:  O(1).
    */
   public boolean isVertex(Object vertex) {
-    return (this.vertexToIndex.find(vertex) != null);
+    return this.vertexToDListVertex.find(vertex) != null;
   }
 
   /**
@@ -150,7 +165,10 @@ public class WUGraph {
    *
    * Running time:  O(d), where d is the degree of "vertex".
    */
-  public Neighbors getNeighbors(Object vertex);
+  public Neighbors getNeighbors(Object vertex) {
+      var neighbors = new Neighbors();
+      return neighbors;
+  }
 
   /**
    * addEdge() adds an edge (u, v) to the graph.  If either of the parameters
@@ -162,26 +180,25 @@ public class WUGraph {
    * Running time:  O(1).
    */
   public void addEdge(Object u, Object v, int weight) {
-    Vertex firstVertex = new Vertex(u);
-    Vertex secondVertex = new Vertex(v);
-    //convert objects into vertex
-    if (this.vertexToIndex.find(firstVertex) == null || this.vertexToIndex.find(secondVertex) == null) {
+    if (this.vertexToDListVertex.find(u) == null || this.vertexToDListVertex.find(v) == null) {
       return;
     }
 
-    int firstIndex = Integer.valueOf(this.vertexToIndex.find(firstVertex).value().toString());
-    int secondIndex = Integer.valueOf(this.vertexToIndex.find(secondVertex).value().toString());
-    //find index of each vertex
-    Vertex firstExistingVertex = this.vertices.get(firstIndex);
-    Vertex secondExistingVertex = this.vertices.get(secondIndex);
-    VertexPair newPair = new VertexPair(firstExistingVertex, secondExistingVertex);
-    this.vertexPairs.insert(newPair, weight);
+    var vertexPair = new VertexPair(u, v);
+    var edge = new Edge(vertexPair);
 
-
-/*    List<Edge> firstEdges = (List<Edge>) this.vertexToEdges.find(firstExistingVertex).value();
-      for (var edge : firstEdges) {
-      if (edge == )
-    }*/
+    var foundEdge = this.edges.find(vertexPair);
+    DListNode insertedEdge = null;
+    if (foundEdge == null) {
+      // insert edge into both vertexes
+      ((Vertex) getVertexFromDList(u).item).edges.insertBack(edge);
+      insertedEdge = ((Vertex) getVertexFromDList(u).item).edges.back();
+      edgeCount++;
+      ((Vertex) getVertexFromDList(v).item).edges.insertBack(edge);
+    }
+    this.edgesToWeights.remove(vertexPair);
+    this.edgesToWeights.insert(vertexPair, weight);
+    this.edges.insert(vertexPair, insertedEdge);
 
   }
 
@@ -194,6 +211,20 @@ public class WUGraph {
    * Running time:  O(1).
    */
   public void removeEdge(Object u, Object v) {
+    if (this.vertexToDListVertex.find(u) == null || this.vertexToDListVertex.find(v) == null) {
+      return;
+    }
+
+    var vertexPair = new VertexPair(u, v);
+    var foundEdge = this.edges.find(vertexPair);
+    if (foundEdge == null) {
+      return;
+    }
+
+    this.edgesToWeights.remove(vertexPair);
+    this.edges.remove(vertexPair);
+    ((Vertex) getVertexFromDList(u).item).edges.remove((DListNode) foundEdge.value());
+    ((Vertex) getVertexFromDList(v).item).edges.remove((DListNode) foundEdge.value());
 
   }
 
@@ -204,7 +235,9 @@ public class WUGraph {
    *
    * Running time:  O(1).
    */
-  public boolean isEdge(Object u, Object v);
+  public boolean isEdge(Object u, Object v) {
+    return this.edges.find(new VertexPair(u, v))  != null;
+  }
 
   /**
    * weight() returns the weight of (u, v).  Returns zero if (u, v) is not
@@ -220,6 +253,9 @@ public class WUGraph {
    *
    * Running time:  O(1).
    */
-  public int weight(Object u, Object v);
+  public int weight(Object u, Object v) {
+    var foundWeight = this.edgesToWeights.find(new VertexPair(u, v));
+    return foundWeight == null ? 0 : Integer.valueOf(foundWeight.value().toString());
+  }
 
 }

@@ -21,103 +21,103 @@ public class WUGTest {
     g = new WUGraph();
     result = g.vertexCount();
     if (result != 0) {
-      System.out.println("vertexCount() on empty graph returns " + result +
+      System.out.println("1. vertexCount() on empty graph returns " + result +
                          " but should return 0.");
       countDeduction = 1;
     }
     result = g.edgeCount();
     if (result != 0) {
-      System.out.println("edgeCount() on empty graph returns " + result +
+      System.out.println("2. edgeCount() on empty graph returns " + result +
                          " but should return 0.");
       countDeduction = 1;
     }
     wuVertArray = g.getVertices();
     if (wuVertArray == null) {
-      System.out.println("getVertices() returns null but shouldn't.");
+      System.out.println("3. getVertices() returns null but shouldn't.");
       getDeduction = 1;
     } else if (wuVertArray.length != 0) {
-      System.out.println("getVertices() returns array of length " +
+      System.out.println("4. getVertices() returns array of length " +
                          wuVertArray.length + "; should have length 0.");
       getDeduction = 1;
     }
     if (g.isVertex(vertArray[0])) {
-      System.out.println("isVertex() on vertex 0 should return false" +
+      System.out.println("5. isVertex() on vertex 0 should return false" +
                          " but returns true.");
       isVDeduction = 1;
     }
 
-    System.out.println("Adding vertex 0.");
+    System.out.println("6. Adding vertex 0.");
     g.addVertex(vertArray[0]);
     result = g.vertexCount();
     if (result != 1) {
-      System.out.println("vertexCount() returns " + result +
+      System.out.println("7. vertexCount() returns " + result +
                          " but should return 1.");
       countDeduction = 1;
     }
     if (!g.isVertex(vertArray[0])) {
-      System.out.println("isVertex() on vertex 0 should return true" +
+      System.out.println("8. isVertex() on vertex 0 should return true" +
                          " but returns false.");
       isVDeduction = 1;
     }
     if (g.isVertex(vertArray[1])) {
-      System.out.println("isVertex() on vertex 1 should return false" +
+      System.out.println("9. isVertex() on vertex 1 should return false" +
                          " but returns true.");
       isVDeduction = 1;
     }
     wuVertArray = g.getVertices();
     if (wuVertArray == null) {
-      System.out.println("getVertices() returns null but shouldn't.");
+      System.out.println("10. getVertices() returns null but shouldn't.");
       getDeduction = 1;
     } else if (wuVertArray.length != 1) {
-      System.out.println("getVertices() returns array of length " +
+      System.out.println("11. getVertices() returns array of length " +
                          wuVertArray.length + "; should have length 1.");
       getDeduction = 1;
     } else if (wuVertArray[0] != vertArray[0]) {
-      System.out.println("getVertices() returns array containing" +
+      System.out.println("12. getVertices() returns array containing" +
                          " the wrong object.");
       getDeduction = 1;
     }
 
-    System.out.println("Adding vertex 1.");
+    System.out.println("13. Adding vertex 1.");
     g.addVertex(vertArray[1]);
     result = g.vertexCount();
     if (result != 2) {
-      System.out.println("vertexCount() returns " + result +
+      System.out.println("14. vertexCount() returns " + result +
                          " but should return 2.");
       countDeduction = 1;
     }
     if (!g.isVertex(vertArray[1])) {
-      System.out.println("isVertex() on vertex 1 should return true" +
+      System.out.println("15. isVertex() on vertex 1 should return true" +
                          " but returns false.");
       isVDeduction = 1;
     }
 
-    System.out.println("Adding vertex 0.");
+    System.out.println("16. Adding vertex 0.");
     g.addVertex(vertArray[0]);
     result = g.vertexCount();
     if (result != 2) {
-      System.out.println("vertexCount() returns " + result +
+      System.out.println("17. vertexCount() returns " + result +
                          " but should return 2.");
       countDeduction = 1;
     }
     if (!g.isVertex(vertArray[0])) {
-      System.out.println("isVertex() on vertex 0 should return true " +
+      System.out.println("18. isVertex() on vertex 0 should return true " +
                          " but returns false.");
       isVDeduction = 1;
     }
     wuVertArray = g.getVertices();
     if (wuVertArray == null) {
-      System.out.println("getVertices() returns null but shouldn't.");
+      System.out.println("19. getVertices() returns null but shouldn't.");
       getDeduction = 1;
     } else if (wuVertArray.length != 2) {
-      System.out.println("getVertices() returns array of length " +
+      System.out.println("20. getVertices() returns array of length " +
                          wuVertArray.length + "; should have length 2.");
       getDeduction = 1;
     } else if (((wuVertArray[0] != vertArray[0]) ||
                 (wuVertArray[1] != vertArray[1])) &&
                ((wuVertArray[0] != vertArray[1]) ||
                 (wuVertArray[1] != vertArray[0]))) {
-      System.out.println("getVertices() returns array containing" +
+      System.out.println("21. getVertices() returns array containing" +
                          " wrong objects.");
       getDeduction = 1;
     }
@@ -130,16 +130,16 @@ public class WUGTest {
     g.addVertex(vertArray[4]);
     result = g.vertexCount();
     if (result != 5) {
-      System.out.println("vertexCount() returns " + result +
+      System.out.println("22. vertexCount() returns " + result +
                          " but should return 5.");
       countDeduction = 1;
     }
     wuVertArray = g.getVertices();
     if (wuVertArray == null) {
-      System.out.println("getVertices() returns null but shouldn't.");
+      System.out.println("23. getVertices() returns null but shouldn't.");
       getDeduction = 1;
     } else if (wuVertArray.length != 5) {
-      System.out.println("getVertices() returns array of length " +
+      System.out.println("24. getVertices() returns array of length " +
                          wuVertArray.length + "; should have length 5.");
       getDeduction = 1;
     }
@@ -150,45 +150,45 @@ public class WUGTest {
     g.removeVertex(vertArray[3]);
     result = g.vertexCount();
     if (result != 3) {
-      System.out.println("vertexCount() returns " + result +
+      System.out.println("25. vertexCount() returns " + result +
                          " but should return 3.");
       countDeduction = 1;
     }
-    System.out.println("Removing vertex 3.");
+    System.out.println("26. Removing vertex 3.");
     g.removeVertex(vertArray[3]);
     result = g.vertexCount();
     if (result != 3) {
-      System.out.println("vertexCount() returns " + result +
+      System.out.println("27. vertexCount() returns " + result +
                          " but should return 3.");
       countDeduction = 1;
     }
     result = g.edgeCount();
     if (result != 0) {
-      System.out.println("edgeCount() on empty graph returns " + result +
+      System.out.println("28. edgeCount() on empty graph returns " + result +
                          " but should return 0.");
       countDeduction = 1;
     }
     if (g.isVertex(vertArray[0])) {
-      System.out.println("isVertex() on vertex 0 should return false" +
+      System.out.println("29. isVertex() on vertex 0 should return false" +
                          " but returns true.");
       isVDeduction = 1;
     }
     if (g.isVertex(vertArray[3])) {
-      System.out.println("isVertex() on vertex 3 should return false" +
+      System.out.println("30. isVertex() on vertex 3 should return false" +
                          " but returns true.");
       isVDeduction = 1;
     }
     if (!g.isVertex(vertArray[4])) {
-      System.out.println("isVertex() on vertex 4 should return true" +
+      System.out.println("31. isVertex() on vertex 4 should return true" +
                          " but returns false.");
       isVDeduction = 1;
     }
     wuVertArray = g.getVertices();
     if (wuVertArray == null) {
-      System.out.println("getVertices() returns null but shouldn't.");
+      System.out.println("32. getVertices() returns null but shouldn't.");
       getDeduction = 1;
     } else if (wuVertArray.length != 3) {
-      System.out.println("getVertices() returns array of length " +
+      System.out.println("33. getVertices() returns array of length " +
                          wuVertArray.length + "; should have length 3.");
       getDeduction = 1;
     } else if (((wuVertArray[0] != vertArray[1]) &&
@@ -200,13 +200,13 @@ public class WUGTest {
                ((wuVertArray[2] != vertArray[1]) &&
                 (wuVertArray[2] != vertArray[2]) &&
                 (wuVertArray[2] != vertArray[4]))) {
-      System.out.println("getVertices() returns array containing " +
+      System.out.println("34. getVertices() returns array containing " +
                          "wrong objects.");
       getDeduction = 1;
     } else if ((wuVertArray[0] == wuVertArray[1]) ||
                (wuVertArray[1] == wuVertArray[2]) ||
                (wuVertArray[2] == wuVertArray[0])) {
-      System.out.println("getVertices() returns array containing " +
+      System.out.println("35. getVertices() returns array containing " +
                          "duplicate objects.");
       getDeduction = 1;
     }

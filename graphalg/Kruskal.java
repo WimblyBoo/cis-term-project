@@ -19,6 +19,9 @@ public class Kruskal {
    * @param g The weighted, undirected graph whose MST we want to compute.
    * @return A newly constructed WUGraph representing the MST of g.
    */
-  public static WUGraph minSpanTree(WUGraph g);
+  public static WUGraph minSpanTree(WUGraph g) {
+    // TODO Actually implement this
+    return new WUGraph();
+  };
 
 }
