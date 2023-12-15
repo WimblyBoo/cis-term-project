@@ -1,15 +1,13 @@
 package graph;
 
-import dict.HashTableChained;
-
-import java.util.List;
+import list.DList;
 
 public class Vertex {
     Object name;
-    HashTableChained connectingEdges;
+    DList edges;
 
     public Vertex(Object originalObject) {
         this.name = originalObject;
-
+        this.edges = new DList();
     }
 }
