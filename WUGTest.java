@@ -263,7 +263,7 @@ public class WUGTest {
       getDeduction = 1;
     }
     if (g.isEdge(vertArray[3], vertArray[7])) {
-      System.out.println("isEdge(vertex 3, vertex 7) should return false " +
+      System.out.println("1. isEdge(vertex 3, vertex 7) should return false " +
                          " but returns true.");
       isDeduction = 1;
     }
@@ -274,7 +274,7 @@ public class WUGTest {
       weightDeduction = 1;
     }
     if (g.isEdge(vertArray[3], vertArray[3])) {
-      System.out.println("isEdge(vertex 3, vertex 3) should return false " +
+      System.out.println("2. isEdge(vertex 3, vertex 3) should return false " +
                          " but returns true.");
       isDeduction = 1;
     }
@@ -300,7 +300,7 @@ public class WUGTest {
       countDeduction = 1;
     }
     if (!g.isEdge(vertArray[3], vertArray[7])) {
-      System.out.println("isEdge(vertex 3, vertex 7) should return true " +
+      System.out.println("3. isEdge(vertex 3, vertex 7) should return true " +
                          " but returns false.");
       isDeduction = 1;
     }
@@ -311,7 +311,7 @@ public class WUGTest {
       weightDeduction = 1;
     }
     if (!g.isEdge(vertArray[7], vertArray[3])) {
-      System.out.println("isEdge(vertex 7, vertex 3) should return true " +
+      System.out.println("4. isEdge(vertex 7, vertex 3) should return true " +
                          " but returns false.");
       isDeduction = 1;
     }
@@ -349,7 +349,7 @@ public class WUGTest {
       countDeduction = 1;
     }
     if (!g.isEdge(vertArray[3], vertArray[3])) {
-      System.out.println("isEdge(vertex 3, vertex 3) should return true " +
+      System.out.println("5. isEdge(vertex 3, vertex 3) should return true " +
                          " but returns false.");
       isDeduction = 1;
     }
@@ -381,7 +381,7 @@ public class WUGTest {
       countDeduction = 1;
     }
     if (!g.isEdge(vertArray[3], vertArray[7])) {
-      System.out.println("isEdge(vertex 3, vertex 7) should return true " +
+      System.out.println("6. isEdge(vertex 3, vertex 7) should return true " +
                          " but returns false.");
       isDeduction = 1;
     }
@@ -392,7 +392,7 @@ public class WUGTest {
       weightDeduction = 1;
     }
     if (!g.isEdge(vertArray[7], vertArray[3])) {
-      System.out.println("isEdge(vertex 7, vertex 3) should return true " +
+      System.out.println("7. isEdge(vertex 7, vertex 3) should return true " +
                          " but returns false.");
       isDeduction = 1;
     }
@@ -469,7 +469,7 @@ public class WUGTest {
       countDeduction = 1;
     }
     if (!g.isEdge(vertArray[1], vertArray[3])) {
-      System.out.println("isEdge(vertex 1, vertex 3) should return true " +
+      System.out.println("8. isEdge(vertex 1, vertex 3) should return true " +
                          " but returns false.");
       isDeduction = 1;
     }
@@ -480,7 +480,7 @@ public class WUGTest {
       weightDeduction = 1;
     }
     if (!g.isEdge(vertArray[1], vertArray[1])) {
-      System.out.println("isEdge(vertex 1, vertex 1) should return true " +
+      System.out.println("9. isEdge(vertex 1, vertex 1) should return true " +
                          " but returns false.");
       isDeduction = 1;
     }
@@ -512,12 +512,12 @@ public class WUGTest {
       remEDeduction = 1;
     }
     if (g.isEdge(vertArray[1], vertArray[6])) {
-      System.out.println("isEdge(vertex 1, vertex 6) should return false " +
+      System.out.println("10. isEdge(vertex 1, vertex 6) should return false " +
                          " but returns true.");
       remEDeduction = 1;
     }
     if (g.isEdge(vertArray[6], vertArray[1])) {
-      System.out.println("isEdge(vertex 6, vertex 1) should return false " +
+      System.out.println("11. isEdge(vertex 6, vertex 1) should return false " +
                          " but returns true.");
       remEDeduction = 1;
     }
@@ -560,37 +560,37 @@ public class WUGTest {
       remVDeduction = 1;
     }
     if (g.isEdge(vertArray[3], vertArray[3])) {
-      System.out.println("isEdge(vertex 3, vertex 3) should return false " +
+      System.out.println("12. isEdge(vertex 3, vertex 3) should return false " +
                          " but returns true.");
       remVDeduction = 1;
     }
     if (g.isEdge(vertArray[3], vertArray[7])) {
-      System.out.println("isEdge(vertex 3, vertex 7) should return false " +
+      System.out.println("13. isEdge(vertex 3, vertex 7) should return false " +
                          " but returns true.");
       remVDeduction = 1;
     }
     if (g.isEdge(vertArray[7], vertArray[3])) {
-      System.out.println("isEdge(vertex 7, vertex 3) should return false " +
+      System.out.println("14. isEdge(vertex 7, vertex 3) should return false " +
                          " but returns true.");
       remVDeduction = 1;
     }
     if (g.isEdge(vertArray[3], vertArray[9])) {
-      System.out.println("isEdge(vertex 3, vertex 9) should return false " +
+      System.out.println("15. isEdge(vertex 3, vertex 9) should return false " +
                          " but returns true.");
       remVDeduction = 1;
     }
     if (g.isEdge(vertArray[9], vertArray[3])) {
-      System.out.println("isEdge(vertex 9, vertex 3) should return false " +
+      System.out.println("16. isEdge(vertex 9, vertex 3) should return false " +
                          " but returns true.");
       remVDeduction = 1;
     }
     if (g.isEdge(vertArray[3], vertArray[1])) {
-      System.out.println("isEdge(vertex 3, vertex 1) should return false " +
+      System.out.println("17. isEdge(vertex 3, vertex 1) should return false " +
                          " but returns true.");
       remVDeduction = 1;
     }
     if (g.isEdge(vertArray[1], vertArray[3])) {
-      System.out.println("isEdge(vertex 1, vertex 3) should return false " +
+      System.out.println("18. isEdge(vertex 1, vertex 3) should return false " +
                          " but returns true.");
       remVDeduction = 1;
     }
@@ -653,7 +653,7 @@ public class WUGTest {
       remVDeduction = 1;
     }
     if (g.isEdge(vertArray[1], vertArray[1])) {
-      System.out.println("isEdge(vertex 1, vertex 1) should return false " +
+      System.out.println("19. isEdge(vertex 1, vertex 1) should return false " +
                          " but returns true.");
       remVDeduction = 1;
     }
@@ -677,7 +677,7 @@ public class WUGTest {
       remVDeduction = 1;
     }
     if (g.isEdge(vertArray[1], vertArray[1])) {
-      System.out.println("isEdge(vertex 1, vertex 1) should return false " +
+      System.out.println("20. isEdge(vertex 1, vertex 1) should return false " +
                          " but returns true.");
       remVDeduction = 1;
     }
@@ -691,12 +691,12 @@ public class WUGTest {
       remVDeduction = 1;
     }
     if (g.isEdge(vertArray[9], vertArray[7])) {
-      System.out.println("isEdge(vertex 9, vertex 7) should return false " +
+      System.out.println("21. isEdge(vertex 9, vertex 7) should return false " +
                          " but returns true.");
       remVDeduction = 1;
     }
     if (g.isEdge(vertArray[7], vertArray[9])) {
-      System.out.println("isEdge(vertex 7, vertex 9) should return false " +
+      System.out.println("22. isEdge(vertex 7, vertex 9) should return false " +
                          " but returns true.");
       remVDeduction = 1;
     }
@@ -716,12 +716,12 @@ public class WUGTest {
       remVDeduction = 1;
     }
     if (g.isEdge(vertArray[9], vertArray[0])) {
-      System.out.println("isEdge(vertex 9, vertex 0) should return false " +
+      System.out.println("23. isEdge(vertex 9, vertex 0) should return false " +
                          " but returns true.");
       remVDeduction = 1;
     }
     if (g.isEdge(vertArray[0], vertArray[9])) {
-      System.out.println("isEdge(vertex 0, vertex 9) should return false " +
+      System.out.println("24. isEdge(vertex 0, vertex 9) should return false " +
                          " but returns true.");
       remVDeduction = 1;
     }

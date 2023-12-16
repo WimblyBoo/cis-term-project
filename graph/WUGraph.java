@@ -119,11 +119,24 @@ public class WUGraph {
     }
 
     var dListVertex = getVertexFromDList(vertex);
+    // 1. get edge list from vertex
+    var vertexEdgeList = ((Vertex) getVertexFromDList(vertex).item).edges;
+    // 2. for each edge in edge list
+    //    2a. remove edge from connecting vertex's edge list
+    //    2b. remove edge from hash table
+    var currEdge = vertexEdgeList.front();
+
+    while (currEdge != null) {
+      var partnerReference = ((Edge) currEdge.item).partnerEdge;
+
+      currEdge = vertexEdgeList.next(currEdge);
+    }
     // remove from doubly linked list
     this.constructedVertexList.remove(dListVertex);
     this.vertexToDListVertex.remove(vertex);
 
     //add edge handling
+
   }
 
   /**
@@ -170,7 +183,7 @@ public class WUGraph {
    */
   public Neighbors getNeighbors(Object vertex) {
       var neighbors = new Neighbors();
-      for (var edge : ((Vertex) getVertexFromDList(vertex).item).edges)
+
       return neighbors;
   }
 
@@ -189,21 +202,27 @@ public class WUGraph {
     }
 
     var vertexPair = new VertexPair(u, v);
-    var edge = new Edge(vertexPair);
-
+    var edgeU = new Edge(vertexPair);
+    var edgeV = new Edge(vertexPair);
     var foundEdge = this.edges.find(vertexPair);
-    DListNode insertedEdge = null;
+    DListNode insertedEdgeU = null;
+    DListNode insertedEdgeV = null;
     if (foundEdge == null) {
       // insert edge into both vertexes
-      ((Vertex) getVertexFromDList(u).item).edges.insertBack(edge);
-      insertedEdge = ((Vertex) getVertexFromDList(u).item).edges.back();
+      ((Vertex) getVertexFromDList(u).item).edges.insertBack(edgeU);
+      insertedEdgeU = ((Vertex) getVertexFromDList(u).item).edges.back();
+      ((Vertex) getVertexFromDList(v).item).edges.insertBack(edgeV);
+      insertedEdgeV = ((Vertex) getVertexFromDList(v).item).edges.back();
+      edgeU.setPartnerEdge(insertedEdgeV);
+      edgeV.setPartnerEdge(insertedEdgeU);
+      edgeU.setConnectingVertex((Vertex) getVertexFromDList(v).item);
+      edgeV.setConnectingVertex((Vertex) getVertexFromDList(u).item);
       edgeCount++;
-      ((Vertex) getVertexFromDList(v).item).edges.insertBack(edge);
     }
+
     this.edgesToWeights.remove(vertexPair);
     this.edgesToWeights.insert(vertexPair, weight);
-    this.edges.insert(vertexPair, insertedEdge);
-
+    this.edges.insert(vertexPair, insertedEdgeU);
   }
 
   /**
@@ -240,7 +259,10 @@ public class WUGraph {
    * Running time:  O(1).
    */
   public boolean isEdge(Object u, Object v) {
-    return this.edges.find(new VertexPair(u, v))  != null || this.edges.find(new VertexPair(v, u)) != null;
+    var result = this.edges.find(new VertexPair(u, v));
+    System.out.println("pizza");
+    System.out.println(result);
+    return result  != null;
   }
 
   /**
