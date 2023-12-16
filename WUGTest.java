@@ -253,7 +253,7 @@ public class WUGTest {
 
     result = g.degree(vertArray[3]);
     if (result != 0) {
-      System.out.println("degree(vertex 3) returns " + result +
+      System.out.println("1. degree(vertex 3) returns " + result +
                          " but should return 0.");
       degreeDeduction = 1;
     }
@@ -323,19 +323,19 @@ public class WUGTest {
     }
     result = g.degree(vertArray[3]);
     if (result != 1) {
-      System.out.println("degree(vertex 3) returns " + result +
+      System.out.println("2. degree(vertex 3) returns " + result +
                          " but should return 1.");
       degreeDeduction = 1;
     }
     result = g.degree(vertArray[7]);
     if (result != 1) {
-      System.out.println("degree(vertex 7) returns " + result +
+      System.out.println("3. degree(vertex 7) returns " + result +
                          " but should return 1.");
       degreeDeduction = 1;
     }
     result = g.degree(vertArray[0]);
     if (result != 0) {
-      System.out.println("degree(vertex 0) returns " + result +
+      System.out.println("4. degree(vertex 0) returns " + result +
                          " but should return 0.");
       degreeDeduction = 1;
     }
@@ -361,13 +361,13 @@ public class WUGTest {
     }
     result = g.degree(vertArray[3]);
     if (result != 2) {
-      System.out.println("degree(vertex 3) returns " + result +
+      System.out.println("5. degree(vertex 3) returns " + result +
                          " but should return 2.");
       degreeDeduction = 1;
     }
     result = g.degree(vertArray[7]);
     if (result != 1) {
-      System.out.println("degree(vertex 7) returns " + result +
+      System.out.println("6. degree(vertex 7) returns " + result +
                          " but should return 1.");
       degreeDeduction = 1;
     }
@@ -404,13 +404,13 @@ public class WUGTest {
     }
     result = g.degree(vertArray[3]);
     if (result != 2) {
-      System.out.println("degree(vertex 3) returns " + result +
+      System.out.println("7. degree(vertex 3) returns " + result +
                          " but should return 2.");
       degreeDeduction = 1;
     }
     result = g.degree(vertArray[7]);
     if (result != 1) {
-      System.out.println("degree(vertex 7) returns " + result +
+      System.out.println("8. degree(vertex 7) returns " + result +
                          " but should return 1.");
       degreeDeduction = 1;
     }
@@ -492,13 +492,13 @@ public class WUGTest {
     }
     result = g.degree(vertArray[3]);
     if (result != 4) {
-      System.out.println("degree(vertex 3) returns " + result +
+      System.out.println("9. degree(vertex 3) returns " + result +
                          " but should return 4.");
       degreeDeduction = 1;
     }
     result = g.degree(vertArray[1]);
     if (result != 3) {
-      System.out.println("degree(vertex 1) returns " + result +
+      System.out.println("10. degree(vertex 1) returns " + result +
                          " but should return 3.");
       degreeDeduction = 1;
     }
@@ -523,13 +523,13 @@ public class WUGTest {
     }
     result = g.degree(vertArray[6]);
     if (result != 0) {
-      System.out.println("degree(vertex 6) returns " + result +
+      System.out.println("11. degree(vertex 6) returns " + result +
                          " but should return 0.");
       remEDeduction = 1;
     }
     result = g.degree(vertArray[1]);
     if (result != 2) {
-      System.out.println("degree(vertex 1) returns " + result +
+      System.out.println("12. degree(vertex 1) returns " + result +
                          " but should return 2.");
       remEDeduction = 1;
     }
@@ -555,7 +555,7 @@ public class WUGTest {
     }
     result = g.degree(vertArray[3]);
     if (result != 0) {
-      System.out.println("degree(vertex 3) returns " + result +
+      System.out.println("13. degree(vertex 3) returns " + result +
                          " but should return 0.");
       remVDeduction = 1;
     }
@@ -596,19 +596,19 @@ public class WUGTest {
     }
     result = g.degree(vertArray[1]);
     if (result != 1) {
-      System.out.println("degree(vertex 1) returns " + result +
+      System.out.println("14. degree(vertex 1) returns " + result +
                          " but should return 1.");
       remVDeduction = 1;
     }
     result = g.degree(vertArray[7]);
     if (result != 1) {
-      System.out.println("degree(vertex 7) returns " + result +
+      System.out.println("15. degree(vertex 7) returns " + result +
                          " but should return 1.");
       remVDeduction = 1;
     }
     result = g.degree(vertArray[9]);
     if (result != 2) {
-      System.out.println("degree(vertex 9) returns " + result +
+      System.out.println("16. degree(vertex 9) returns " + result +
                          " but should return 2.");
       remVDeduction = 1;
     }
@@ -659,7 +659,7 @@ public class WUGTest {
     }
     result = g.degree(vertArray[1]);
     if (result != 0) {
-      System.out.println("degree(vertex 1) returns " + result +
+      System.out.println("17. degree(vertex 1) returns " + result +
                          " but should return 0.");
       remVDeduction = 1;
     }
@@ -727,13 +727,13 @@ public class WUGTest {
     }
     result = g.degree(vertArray[9]);
     if (result != 0) {
-      System.out.println("degree(vertex 9) returns " + result +
+      System.out.println("18. degree(vertex 9) returns " + result +
                          " but should return 0.");
       remVDeduction = 1;
     }
     result = g.degree(vertArray[0]);
     if (result != 0) {
-      System.out.println("degree(vertex 0) returns " + result +
+      System.out.println("19. degree(vertex 0) returns " + result +
                          " but should return 0.");
       remVDeduction = 1;
     }

@@ -144,7 +144,10 @@ public class WUGraph {
    * Running time:  O(1).
    */
   public int degree(Object vertex) {
-    return 0;
+    if (this.vertexToDListVertex.find(vertex) == null) {
+      return 0;
+    }
+    return ((Vertex) getVertexFromDList(vertex).item).edges.length();
   }
 
   /**
@@ -167,6 +170,7 @@ public class WUGraph {
    */
   public Neighbors getNeighbors(Object vertex) {
       var neighbors = new Neighbors();
+      for (var edge : ((Vertex) getVertexFromDList(vertex).item).edges)
       return neighbors;
   }
 
@@ -236,7 +240,7 @@ public class WUGraph {
    * Running time:  O(1).
    */
   public boolean isEdge(Object u, Object v) {
-    return this.edges.find(new VertexPair(u, v))  != null;
+    return this.edges.find(new VertexPair(u, v))  != null || this.edges.find(new VertexPair(v, u)) != null;
   }
 
   /**
